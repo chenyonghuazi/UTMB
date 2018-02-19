@@ -7,13 +7,31 @@
 //
 
 import UIKit
+import Firebase
+import SDWebImage
 
 class HomePageController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    var ref: StorageReference!
+    var generalImage = UIImage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        
+//        ref = Storage.storage().reference()
+//
+//        ref.child("20171223.jpg").getData(maxSize: 1 * 1024 * 1024) { data, error in
+//            if let error = error {
+//                // Uh-oh, an error occurred!
+//            } else {
+//                // Data for "images/island.jpg" is returned
+//                self.generalImage = UIImage(data: data!)!
+//                self.tableView.reloadData()
+//            }
+//        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +56,7 @@ class HomePageController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewerCell", for: indexPath) as! HomeViewerCell
+            cell.cellImage.sd_setImage(with: URL(string:"https://firebasestorage.googleapis.com/v0/b/utmb-39117.appspot.com/o/20171223.jpg?alt=media&token=415377c4-7c0a-4f1b-9a58-212c827222e4")!, completed: nil)
             return cell
         }
         else if indexPath.section == 1 {
@@ -46,6 +65,7 @@ class HomePageController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeRecommandCell", for: indexPath) as! HomeRecommandCell
+            cell.cellImage.sd_setImage(with: URL(string:"https://firebasestorage.googleapis.com/v0/b/utmb-39117.appspot.com/o/20171223.jpg?alt=media&token=415377c4-7c0a-4f1b-9a58-212c827222e4")!, completed: nil)
             return cell
         }
         else if indexPath.section == 3 {

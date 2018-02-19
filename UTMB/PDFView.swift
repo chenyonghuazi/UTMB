@@ -76,3 +76,18 @@ extension PDFView:UIScrollViewDelegate{
         }
     }
 }
+
+extension PDFView:WKNavigationDelegate{
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        let image = screenshot()
+    }
+    
+    func screenshot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions((self.myWebView?.bounds.size)!, true, 0);
+//            self.drawHierarchy(in: self.bounds, afterScreenUpdates: true);
+            let snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            return snapshotImage;
+    }
+    
+}

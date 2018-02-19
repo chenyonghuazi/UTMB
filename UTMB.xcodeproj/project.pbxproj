@@ -25,6 +25,9 @@
 		E8D6E5E3203A220000115C05 /* HomeRecommandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6E5E2203A220000115C05 /* HomeRecommandCell.swift */; };
 		E8D6E5E5203A224B00115C05 /* HomeNearbySellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6E5E4203A224B00115C05 /* HomeNearbySellCell.swift */; };
 		E8D6E5E7203A229600115C05 /* HomeCategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6E5E6203A229600115C05 /* HomeCategoryCollectionCell.swift */; };
+		E8D6E5EB203A320700115C05 /* MeLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6E5EA203A320700115C05 /* MeLoginCell.swift */; };
+		E8D6E5ED203A338200115C05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6E5EC203A338200115C05 /* LoginViewController.swift */; };
+		E8D6E5EF203A338C00115C05 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6E5EE203A338C00115C05 /* SignupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		E8D6E5E2203A220000115C05 /* HomeRecommandCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommandCell.swift; sourceTree = "<group>"; };
 		E8D6E5E4203A224B00115C05 /* HomeNearbySellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNearbySellCell.swift; sourceTree = "<group>"; };
 		E8D6E5E6203A229600115C05 /* HomeCategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryCollectionCell.swift; sourceTree = "<group>"; };
+		E8D6E5EA203A320700115C05 /* MeLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeLoginCell.swift; sourceTree = "<group>"; };
+		E8D6E5EC203A338200115C05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E8D6E5EE203A338C00115C05 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,8 @@
 				E8D6E5D7203A19BF00115C05 /* HomePageController.swift */,
 				E8D6E5D9203A19D000115C05 /* CategoryController.swift */,
 				E8D6E5DB203A1A0700115C05 /* MeController.swift */,
+				E8D6E5EC203A338200115C05 /* LoginViewController.swift */,
+				E8D6E5EE203A338C00115C05 /* SignupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -131,6 +139,8 @@
 		E8D6E5D4203A196E00115C05 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E8D6E5E9203A31EE00115C05 /* LoginSignup */,
+				E8D6E5E8203A31E300115C05 /* Me */,
 				E8D6E5DD203A21B700115C05 /* Homepage */,
 			);
 			path = Cells;
@@ -146,6 +156,21 @@
 				E8D6E5E6203A229600115C05 /* HomeCategoryCollectionCell.swift */,
 			);
 			path = Homepage;
+			sourceTree = "<group>";
+		};
+		E8D6E5E8203A31E300115C05 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				E8D6E5EA203A320700115C05 /* MeLoginCell.swift */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		E8D6E5E9203A31EE00115C05 /* LoginSignup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoginSignup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,14 +316,17 @@
 				E8D6E5E1203A21E800115C05 /* HomeCategoryCell.swift in Sources */,
 				E84C85FE20387250005B8F77 /* UTMB.xcdatamodeld in Sources */,
 				E8D6E5D2203A09B400115C05 /* PDFView.swift in Sources */,
+				E8D6E5ED203A338200115C05 /* LoginViewController.swift in Sources */,
 				E8D6E5D6203A198D00115C05 /* MainTabController.swift in Sources */,
 				E8D6E5DC203A1A0700115C05 /* MeController.swift in Sources */,
 				E8D6E5E7203A229600115C05 /* HomeCategoryCollectionCell.swift in Sources */,
 				E8D6E5E3203A220000115C05 /* HomeRecommandCell.swift in Sources */,
 				E8D6E5DA203A19D000115C05 /* CategoryController.swift in Sources */,
 				E84C85F820387250005B8F77 /* ViewController.swift in Sources */,
+				E8D6E5EF203A338C00115C05 /* SignupViewController.swift in Sources */,
 				E8D6E5DF203A21CF00115C05 /* HomeViewerCell.swift in Sources */,
 				E8D6E5E5203A224B00115C05 /* HomeNearbySellCell.swift in Sources */,
+				E8D6E5EB203A320700115C05 /* MeLoginCell.swift in Sources */,
 				E84C85F620387250005B8F77 /* AppDelegate.swift in Sources */,
 				E8D6E5D8203A19BF00115C05 /* HomePageController.swift in Sources */,
 			);

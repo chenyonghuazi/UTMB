@@ -10,4 +10,7 @@ import UIKit
 
 class HomeCategoryCollectionCell: UICollectionViewCell {
     
+    @IBOutlet weak var cellImageButton: UIButton!
+    
 }
+

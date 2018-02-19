@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeCategoryCell: UITableViewCell,UICollectionViewDataSource,UICollectionViewDelegate {
 
@@ -30,6 +31,7 @@ class HomeCategoryCell: UITableViewCell,UICollectionViewDataSource,UICollectionV
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCategoryCollectionCell", for: indexPath) as! HomeCategoryCollectionCell
+        cell.cellImageButton.sd_setImage(with: URL(string:"https://firebasestorage.googleapis.com/v0/b/utmb-39117.appspot.com/o/20171223.jpg?alt=media&token=415377c4-7c0a-4f1b-9a58-212c827222e4")!, for: .normal, completed: nil)
         return cell
     }
 }
