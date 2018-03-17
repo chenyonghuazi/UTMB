@@ -10,9 +10,10 @@ import UIKit
 import SDWebImage
 
 class HomeCategoryCell: UITableViewCell,UICollectionViewDataSource,UICollectionViewDelegate {
-
+    let bookButton = ["Find Textbooks","Post Sell", "Buy Textbooks"]
     override func awakeFromNib() {
         super.awakeFromNib()
+        collectionView.isScrollEnabled = false
         // Initialization code
     }
 
@@ -27,11 +28,18 @@ class HomeCategoryCell: UITableViewCell,UICollectionViewDataSource,UICollectionV
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return bookButton.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCategoryCollectionCell", for: indexPath) as! HomeCategoryCollectionCell
-        cell.cellImageButton.sd_setImage(with: URL(string:"https://firebasestorage.googleapis.com/v0/b/utmb-39117.appspot.com/o/20171223.jpg?alt=media&token=415377c4-7c0a-4f1b-9a58-212c827222e4")!, for: .normal, completed: nil)
+        let image = #imageLiteral(resourceName: "book1")
+        
+        cell.cellImageButton.frame.size = image.size
+        cell.cellImageButton.layer.cornerRadius = cell.cellImageButton.frame.height / 2 - 25
+        cell.cellImageButton.clipsToBounds = true
+        cell.cellImageButton.contentMode = .scaleAspectFill
+        cell.cellImageButton.setImage(image, for: .normal)
+        cell.myLabel.text = bookButton[indexPath.row]
         return cell
     }
 }

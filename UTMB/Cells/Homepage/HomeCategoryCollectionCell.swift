@@ -8,9 +8,14 @@
 
 import UIKit
 
+
+
 class HomeCategoryCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var cellImageButton: UIButton!
     
+    @IBOutlet weak var myLabel: UILabel!
+    @IBAction func fireInHole(_ sender: UIButton) {
+    }
 }
 

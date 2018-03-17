@@ -15,6 +15,13 @@ class PDFView: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     var myWebView:WKWebView?
 
+    @IBAction func panPerform(_ sender: UIPanGestureRecognizer) {
+        
+        if sender.state ==.began || sender.state == .changed{
+            
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +40,8 @@ class PDFView: UIViewController {
             webview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
                 ].forEach{$0.isActive = true}
         }
-        webview.backgroundColor = UIColor.green
+//        webview.backgroundColor = UIColor.green
+        
         view.bringSubview(toFront: webview)
         myWebView = webview
         load()
