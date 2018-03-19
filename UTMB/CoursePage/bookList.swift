@@ -84,7 +84,13 @@ extension bookList:presentPDFViewDelegate{
         present(view, animated: true, completion: nil)
     }
     
-    func presentAlertSheet(view: UIAlertController) {
+    func presentAlertSheet(view: UIAlertController,cell: UITableViewCell) {
+        let bookName = (cell as! bookListCell).bookName.text
+        if check_localData(bookName: bookName!){
+            view.actions[4].isEnabled = true
+        }else{
+            view.actions[4].isEnabled = false
+        }
         present(view, animated: true, completion: nil)
     }
     
@@ -118,12 +124,12 @@ extension bookList:presentPDFViewDelegate{
         
     }
     
-    func downloadPDF(cell: UITableViewCell) -> Bool{
+    func downloadPDF(cell: UITableViewCell){
 //        self.tableV.indexPath(for: cell)
         let target = (cell as! bookListCell)
-        guard let link = target.passingBookAddressForPDFView else{ return false}
-        guard let index = self.tableV.indexPath(for: cell) else{return false}
-        guard let bookName = target.bookName.text else{return false}
+        guard let link = target.passingBookAddressForPDFView else{ return}
+        guard let index = self.tableV.indexPath(for: cell) else{return}
+        guard let bookName = target.bookName.text else{return}
         let hub = MBProgressHUD.showAdded(to: self.view, animated: true)
         hub.mode = MBProgressHUDMode.annularDeterminate
         hub.label.text = "Downloading....."
@@ -148,9 +154,14 @@ extension bookList:presentPDFViewDelegate{
                         print("I am here!")
                         self.set_localData(bookName: bookName, fileURL: filePath)
                     }
+//                    let actions = activity.actions[4]
+//                    actions.isEnabled = true
                 }
         }
-        return bool
+//        return bool
+    }
+    func checkDownload(bookNmae: String) ->Bool{
+        return check_localData(bookName:bookNmae)
     }
 }
 

@@ -9,8 +9,9 @@
 protocol presentPDFViewDelegate {
     func presentPDFView(cell:UITableViewCell)
     func presentActivityController(view:UIActivityViewController)
-    func presentAlertSheet(view:UIAlertController)
-    func downloadPDF(cell:UITableViewCell) -> Bool
+    func presentAlertSheet(view:UIAlertController,cell:UITableViewCell)
+    func downloadPDF(cell:UITableViewCell)
+    func checkDownload(bookNmae:String) -> Bool
 }
 
 
@@ -72,19 +73,33 @@ class bookListCell: UITableViewCell {
         let option5 = UIAlertAction(title: "Delete this local book data", style: .default) { (action) in
             let fileManager = FileManager.default
             let myDirectory = NSHomeDirectory() + "/Documents"
-            let fileArray = fileManager.subpaths(atPath: myDirectory)
-            let index = self.cellindex
-            try? fileManager.removeItem(atPath: myDirectory + "/\(self.bookName.text! + "\(index!).pdf")")
-            
-            
-        }
-        let option4 = UIAlertAction(title: "Download to local", style: .default) { (action) in
-            if (self.bookListCellPDFdelegate?.downloadPDF(cell: self))!{
-                option5.isEnabled = true
+            print("hiiii",myDirectory)
+//            let fileArray = fileManager.subpaths(atPath: myDirectory)
+            let index = String(describing: self.cellindex!)
+            let DeleteFromUrl = myDirectory + "/\(self.bookName.text!)" + "\(index).pdf"
+            print("deleteFromUrl",DeleteFromUrl)
+            do{
+            try! fileManager.removeItem(atPath: DeleteFromUrl)
+            }catch{
+                print("err")
             }
+            var warehouse = UserDefaults.standard.value(forKey: "localBookData") as! [String:String]
+            warehouse[self.bookName.text!] = nil
+            UserDefaults.standard.set(warehouse, forKey: "localBookData")
+            
         }
-        
         option5.isEnabled = false
+        let option4 = UIAlertAction(title: "Download to local", style: .default) { (action) in
+            self.bookListCellPDFdelegate?.downloadPDF(cell: self)
+//            if (self.bookListCellPDFdelegate?.checkDownload(bookNmae: self.bookName.text!))!{
+//                print()
+//                option5.isEnabled = true
+//            }
+            
+            
+        }
+
+        
         option5.setValue(UIColor.red, forKey: "titleTextColor")
         alertsheet.view.tintColor = UIColor.black
         alertsheet.addAction(option1)
@@ -93,7 +108,7 @@ class bookListCell: UITableViewCell {
         alertsheet.addAction(option4)
         alertsheet.addAction(option5)
         alertsheet.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
-        self.bookListCellPDFdelegate?.presentAlertSheet(view: alertsheet)
+        self.bookListCellPDFdelegate?.presentAlertSheet(view: alertsheet,cell: self)
         
     }
     
