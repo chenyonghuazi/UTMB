@@ -51,6 +51,7 @@ extension courseList: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let story = UIStoryboard(name: "Main", bundle: nil)
         let destVC = story.instantiateViewController(withIdentifier: "bookList") as! bookList
         destVC.tapped_course_code = courseList![indexPath.row]
