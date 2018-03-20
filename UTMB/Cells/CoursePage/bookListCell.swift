@@ -79,7 +79,7 @@ class bookListCell: UITableViewCell {
             let DeleteFromUrl = myDirectory + "/\(self.bookName.text!)" + "\(index).pdf"
             print("deleteFromUrl",DeleteFromUrl)
             do{
-            try! fileManager.removeItem(atPath: DeleteFromUrl)
+            try? fileManager.removeItem(atPath: DeleteFromUrl)
             }catch{
                 print("err")
             }

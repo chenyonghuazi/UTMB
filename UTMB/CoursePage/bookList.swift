@@ -11,14 +11,15 @@ import Firebase
 import Alamofire
 import MBProgressHUD
 class bookList: UIViewController {
-
+    var popOutV:UIView?
+    var pdfAddress:UITextView?
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableV: UITableView!
     var ref:DatabaseReference?
     var tapped_course_code:String?
     var booklist = [String:String]()
     var bookWarehouse = [String:String]()
-    
+    var storage:StorageReference?
     @IBAction func back(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -29,6 +30,8 @@ class bookList: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        storage = Storage.storage().reference()
+
 //        self.tableV.separatorStyle = .none
         self.tableV.tableFooterView = UIView()
         navigationBar.topItem?.title = tapped_course_code
@@ -55,7 +58,17 @@ class bookList: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    
+    @IBAction func uploadNoice(_ sender: UIBarButtonItem) {
+        let newView = popOutView()
+        self.popOutV = newView
+//        present(self.popOutV, animated: true, completion: nil)
+        self.view.addSubview(self.popOutV!)
+        self.view.bringSubview(toFront: self.popOutV!)
+        self.popOutV?.isHidden = false
+    }
+    
 }
 extension bookList:UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

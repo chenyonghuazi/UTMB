@@ -435,6 +435,9 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="upload" id="QH2-ig-mjl">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="uploadNoice:" destination="4zX-We-Emi" id="0T1-ew-M0t"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>

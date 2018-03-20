@@ -10,6 +10,7 @@
 		7C1A83AC600C4D4D14ED1696 /* Pods_UTMB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407C4620D795BCFD3B0A54EA /* Pods_UTMB.framework */; };
 		E80D0738205812300003F045 /* courseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D0737205812300003F045 /* courseList.swift */; };
 		E82D44FA205FF56D008C8104 /* bookList_localData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D44F9205FF56D008C8104 /* bookList_localData.swift */; };
+		E82D44FC20606662008C8104 /* bookList_storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D44FB20606662008C8104 /* bookList_storage.swift */; };
 		E84C85F620387250005B8F77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84C85F520387250005B8F77 /* AppDelegate.swift */; };
 		E84C85F820387250005B8F77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84C85F720387250005B8F77 /* ViewController.swift */; };
 		E84C85FB20387250005B8F77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84C85F920387250005B8F77 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		9A290B27740BB72B8EE9342C /* Pods-UTMB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTMB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTMB/Pods-UTMB.debug.xcconfig"; sourceTree = "<group>"; };
 		E80D0737205812300003F045 /* courseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseList.swift; sourceTree = "<group>"; };
 		E82D44F9205FF56D008C8104 /* bookList_localData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookList_localData.swift; sourceTree = "<group>"; };
+		E82D44FB20606662008C8104 /* bookList_storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookList_storage.swift; sourceTree = "<group>"; };
 		E84C85F220387250005B8F77 /* UTMB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E84C85F520387250005B8F77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E84C85F720387250005B8F77 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				E8AA184B205C18B200C81FF2 /* Data2.swift */,
 				E8D6E5D1203A09B400115C05 /* PDFView.swift */,
 				E82D44F9205FF56D008C8104 /* bookList_localData.swift */,
+				E82D44FB20606662008C8104 /* bookList_storage.swift */,
 			);
 			path = CoursePage;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				E8D6E5DA203A19D000115C05 /* CategoryController.swift in Sources */,
 				E8AA184C205C18B200C81FF2 /* Data2.swift in Sources */,
 				E84C85F820387250005B8F77 /* ViewController.swift in Sources */,
+				E82D44FC20606662008C8104 /* bookList_storage.swift in Sources */,
 				E8D6E5EF203A338C00115C05 /* SignupViewController.swift in Sources */,
 				E8D6E5DF203A21CF00115C05 /* HomeViewerCell.swift in Sources */,
 				E8D6E5E5203A224B00115C05 /* HomeNearbySellCell.swift in Sources */,
