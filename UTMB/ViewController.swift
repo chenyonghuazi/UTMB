@@ -26,7 +26,20 @@ class ViewController: UIViewController {
 }
 
 extension UIView{
-    
+    func dropShadow(scale: Bool = true) {
+        layer.cornerRadius = frame.width / 30
+        
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.7
+        layer.shadowOffset = CGSize(width: -1, height: 1)
+//        layer.shadowOffset = CGSize.zero
+        layer.shadowRadius = 10
+        
+//        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+//        layer.shouldRasterize = true
+//        layer.rasterizationScale = scale ? UIScreen.main.scale : 0.5
+    }
     
     func fillSuperview() {
         anchor(top: superview?.topAnchor, leading: superview?.leadingAnchor, bottom: superview?.bottomAnchor, trailing: superview?.trailingAnchor)

@@ -10,11 +10,14 @@ import UIKit
 import Firebase
 import Alamofire
 import MBProgressHUD
+import MessageUI
 class bookList: UIViewController {
-    var popOutV:UIView?
-    var pdfAddress:UITextView?
+//    var popOutV:UIView?
+//    var pdfAddress:UITextView?
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableV: UITableView!
+    
+    @IBOutlet weak var popOutView: UIView!
     var ref:DatabaseReference?
     var tapped_course_code:String?
     var booklist = [String:String]()
@@ -31,7 +34,7 @@ class bookList: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         storage = Storage.storage().reference()
-
+        popOutView.isHidden = true
 //        self.tableV.separatorStyle = .none
         self.tableV.tableFooterView = UIView()
         navigationBar.topItem?.title = tapped_course_code
@@ -59,14 +62,51 @@ class bookList: UIViewController {
     }
     */
     
+    @IBOutlet weak var PDFAddress: UILabel!
     
+    @IBOutlet weak var upLoadTitle: UILabel!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var AddressField: UITextField!
     @IBAction func uploadNoice(_ sender: UIBarButtonItem) {
-        let newView = popOutView()
-        self.popOutV = newView
-//        present(self.popOutV, animated: true, completion: nil)
-        self.view.addSubview(self.popOutV!)
-        self.view.bringSubview(toFront: self.popOutV!)
-        self.popOutV?.isHidden = false
+        popOutView.translatesAutoresizingMaskIntoConstraints = false
+        popOutView.anchor(top: self.navigationBar.bottomAnchor, leading: self.view.leadingAnchor, bottom: self.view.bottomAnchor, trailing: self.view.trailingAnchor, padding: .init(top: self.view.frame.height / 3 - self.navigationBar.frame.height, left: 20, bottom: self.view.frame.height / 3, right: 20))
+//        self.view.alpha = 0.5
+        popOutView.clipsToBounds = true
+        popOutView.dropShadow()
+        self.view.bringSubview(toFront: popOutView)
+        
+        popOutView.isHidden = false
+        popOutView.backgroundColor = UIColor.white
+        upLoadTitle.translatesAutoresizingMaskIntoConstraints = false
+//        upLoadTitle.anchor(top: popOutView.topAnchor, leading: popOutView.leadingAnchor, bottom: AddressField.topAnchor, trailing: popOutView.trailingAnchor, padding: .init(top: 5, left: popOutView.frame.width * (1 / 3), bottom: 5, right: popOutView.frame.width * (1 / 3)))
+        PDFAddress.translatesAutoresizingMaskIntoConstraints = false
+                PDFAddress.anchor(top: popOutView.topAnchor, leading: popOutView.leadingAnchor, bottom: popOutView.bottomAnchor, trailing: nil, padding: .init(top: 64, left: 5, bottom: 64, right: 0), size: .init(width: 90, height: 50)) //popOutView.frame.height * (3 / 8)
+        PDFAddress.text = "PDF URL:"
+        AddressField.translatesAutoresizingMaskIntoConstraints = false
+        AddressField.anchor(top: PDFAddress.topAnchor, leading: PDFAddress.trailingAnchor, bottom: PDFAddress.bottomAnchor, trailing: popOutView.trailingAnchor, padding: .init(top: 10, left: 5, bottom: 10, right: 5), size: .init(width: 0, height: 0))
+        
+        submitButton.translatesAutoresizingMaskIntoConstraints = false
+                submitButton.anchor(top: AddressField.bottomAnchor, leading: AddressField.leadingAnchor, bottom: popOutView.bottomAnchor, trailing: nil, padding: .init(top: 10, left: 0, bottom: 5, right: 0), size: .init(width: 60, height: 0))
+        submitButton.setTitle("submit", for: .normal)
+        
+        upLoadTitle.anchor(top: popOutView.topAnchor, leading: popOutView.leadingAnchor, bottom: AddressField.topAnchor, trailing: popOutView.trailingAnchor, padding: .init(top: 5, left: popOutView.frame.width * (1 / 4), bottom: 5, right: popOutView.frame.width * (1 / 4)))
+        
+        upLoadTitle.text = "Online PDF Upload"
+        
+    }
+    @IBAction func submit(_ sender: UIButton) {
+//        print("check addressField",(self.AddressField.text)!)
+        if (self.AddressField.text)! != "" {
+            let mailComposeViewController = configureMailController()
+            if MFMailComposeViewController.canSendMail(){
+                self.present(mailComposeViewController, animated: true, completion: nil)
+            }else{
+                showMailError()
+            }
+            
+        }else{
+            //            dismiss(animated: true, completion: nil)
+        }
     }
     
 }
