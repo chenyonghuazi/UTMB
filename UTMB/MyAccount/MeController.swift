@@ -11,12 +11,20 @@ import Firebase
 
 class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
+//    var settingData:[Int:[settingModel]]?
+//    var section1:[settingModel]?
+//    var section2
     override func viewDidLoad() {
         super.viewDidLoad()
         let button = UIBarButtonItem(title: "signout", style: .plain, target: self, action: #selector(handleSignout))
         
         navigationItem.leftBarButtonItem = button
-        
+        let navigationBar = self.navigationController?.navigationBar
+        let baricon = #imageLiteral(resourceName: "barIcon")
+        let topicon = UIImageView(image: baricon)
+        topicon.frame = CGRect(x: 2 * navigationBar!.frame.width / 3 - baricon.size.width / 2, y: navigationBar!.frame.height / 2 - baricon.size.height / 2, width: navigationBar!.frame.width / 2, height: navigationBar!.frame.height)
+        topicon.contentMode = .scaleAspectFit
+        navigationItem.titleView = topicon
         // Do any additional setup after loading the view.
     }
 

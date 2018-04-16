@@ -28,6 +28,12 @@ class HomePageController: UIViewController,UITableViewDelegate,UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         dataref = Database.database().reference()
+        let navigationBar = self.navigationController?.navigationBar
+        let baricon = #imageLiteral(resourceName: "barIcon")
+        let topicon = UIImageView(image: baricon)
+        topicon.frame = CGRect(x: 2 * navigationBar!.frame.width / 3 - baricon.size.width / 2, y: navigationBar!.frame.height / 2 - baricon.size.height / 2, width: navigationBar!.frame.width / 2, height: navigationBar!.frame.height)
+        topicon.contentMode = .scaleAspectFit
+        navigationItem.titleView = topicon
         // Do any additional setup after loading the view.
         
 //        ref = Storage.storage().reference()

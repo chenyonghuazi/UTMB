@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7C1A83AC600C4D4D14ED1696 /* Pods_UTMB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407C4620D795BCFD3B0A54EA /* Pods_UTMB.framework */; };
 		E80D0738205812300003F045 /* courseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D0737205812300003F045 /* courseList.swift */; };
+		E8155E5D20854F2E002EB21F /* detailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8155E5C20854F2E002EB21F /* detailVC.swift */; };
+		E8155E5F208551EA002EB21F /* settingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8155E5E208551EA002EB21F /* settingModel.swift */; };
 		E82D44FA205FF56D008C8104 /* bookList_localData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D44F9205FF56D008C8104 /* bookList_localData.swift */; };
 		E82D44FC20606662008C8104 /* bookList_storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D44FB20606662008C8104 /* bookList_storage.swift */; };
 		E84C85F620387250005B8F77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84C85F520387250005B8F77 /* AppDelegate.swift */; };
@@ -42,6 +44,8 @@
 		407C4620D795BCFD3B0A54EA /* Pods_UTMB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTMB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A290B27740BB72B8EE9342C /* Pods-UTMB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTMB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTMB/Pods-UTMB.debug.xcconfig"; sourceTree = "<group>"; };
 		E80D0737205812300003F045 /* courseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseList.swift; sourceTree = "<group>"; };
+		E8155E5C20854F2E002EB21F /* detailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailVC.swift; sourceTree = "<group>"; };
+		E8155E5E208551EA002EB21F /* settingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingModel.swift; sourceTree = "<group>"; };
 		E82D44F9205FF56D008C8104 /* bookList_localData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookList_localData.swift; sourceTree = "<group>"; };
 		E82D44FB20606662008C8104 /* bookList_storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookList_storage.swift; sourceTree = "<group>"; };
 		E84C85F220387250005B8F77 /* UTMB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +125,8 @@
 				E8D6E5DB203A1A0700115C05 /* MeController.swift */,
 				E8D6E5EC203A338200115C05 /* LoginViewController.swift */,
 				E8D6E5EE203A338C00115C05 /* SignupViewController.swift */,
+				E8155E5C20854F2E002EB21F /* detailVC.swift */,
+				E8155E5E208551EA002EB21F /* settingModel.swift */,
 			);
 			path = MyAccount;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8155E5F208551EA002EB21F /* settingModel.swift in Sources */,
 				E8D6E5E1203A21E800115C05 /* HomeCategoryCell.swift in Sources */,
 				E84C85FE20387250005B8F77 /* UTMB.xcdatamodeld in Sources */,
 				E8D6E5D2203A09B400115C05 /* PDFView.swift in Sources */,
@@ -383,6 +390,7 @@
 				E8D6E5EB203A320700115C05 /* MeLoginCell.swift in Sources */,
 				E8D5613F20585566009B0192 /* bookListCell.swift in Sources */,
 				E8D5613C2058552A009B0192 /* bookList.swift in Sources */,
+				E8155E5D20854F2E002EB21F /* detailVC.swift in Sources */,
 				E84C85F620387250005B8F77 /* AppDelegate.swift in Sources */,
 				E8D6E5D8203A19BF00115C05 /* HomePageController.swift in Sources */,
 			);
