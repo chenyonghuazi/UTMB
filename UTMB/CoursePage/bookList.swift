@@ -60,6 +60,7 @@ class bookList: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var PDFAddress: UILabel!
     
+    @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var upLoadTitle: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var AddressField: UITextField!
@@ -85,8 +86,12 @@ class bookList: UIViewController,UITextFieldDelegate {
         AddressField.text = ""
         submitButton.translatesAutoresizingMaskIntoConstraints = false
                 submitButton.anchor(top: AddressField.bottomAnchor, leading: AddressField.leadingAnchor, bottom: popOutView.bottomAnchor, trailing: nil, padding: .init(top: 10, left: 0, bottom: 5, right: 0), size: .init(width: 60, height: 0))
-        submitButton.setTitle("submit", for: .normal)
-        
+        submitButton.setTitle("Submit", for: .normal)
+        submitButton.tintColor = UIColor.black
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+        dismissButton.anchor(top: AddressField.bottomAnchor, leading: submitButton.trailingAnchor, bottom: popOutView.bottomAnchor, trailing: nil, padding: .init(top: 10, left: 20, bottom: 5, right: 5), size: .init(width: 60, height: 0))
+        dismissButton.setTitle("Cancel", for: .normal)
+        dismissButton.tintColor = UIColor.black
         upLoadTitle.anchor(top: popOutView.topAnchor, leading: popOutView.leadingAnchor, bottom: AddressField.topAnchor, trailing: popOutView.trailingAnchor, padding: .init(top: 5, left: popOutView.frame.width * (1 / 4), bottom: 5, right: popOutView.frame.width * (1 / 4)))
         
         upLoadTitle.text = "Online PDF Upload"
@@ -107,6 +112,10 @@ class bookList: UIViewController,UITextFieldDelegate {
         }
     }
     
+    @IBAction func hidePopOutView(_ sender: UIButton) {
+        self.popOutView.alpha = 0
+        self.popOutView.isHidden = true
+    }
 }
 extension bookList:UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -239,7 +248,7 @@ extension bookList:coverImageDelegate{
             if self.bookCoverData[target.bookName.text!] != nil{
                 print("Have cover already")
             }else{
-                if let data = UIImagePNGRepresentation(image){
+                if let data = UIImageJPEGRepresentation(image, 0.5){
                     print("save cover in local already2",data)
                     let index = tapped_course_code!.index((tapped_course_code?.startIndex)!, offsetBy: 2)
                     let program = tapped_course_code![...index] //such as Mat

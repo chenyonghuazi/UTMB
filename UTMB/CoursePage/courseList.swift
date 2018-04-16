@@ -10,14 +10,22 @@ import UIKit
 
 class courseList: UIViewController {
 
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBAction func back(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     var courseList:[String]?
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "CourseList"
+//        navigationItem.title = "CourseList"
+        navigationBar.backgroundColor = UIColor.black
+        navigationBar.tintColor = UIColor.black
         // Do any additional setup after loading the view.
+        let baricon = #imageLiteral(resourceName: "barIcon")
+        let topicon = UIImageView(image: baricon)
+        topicon.frame = CGRect(x: 2 * navigationBar.frame.width / 3 - baricon.size.width / 2, y: navigationBar.frame.height / 2 - baricon.size.height / 2, width: navigationBar.frame.width / 2, height: navigationBar.frame.height)
+        topicon.contentMode = .scaleAspectFit
+        navigationBar.topItem?.titleView = topicon
     }
 
     override func didReceiveMemoryWarning() {

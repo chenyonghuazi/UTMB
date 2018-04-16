@@ -115,6 +115,16 @@
 			path = CoursePage;
 			sourceTree = "<group>";
 		};
+		E8155E5B208521D1002EB21F /* MyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				E8D6E5DB203A1A0700115C05 /* MeController.swift */,
+				E8D6E5EC203A338200115C05 /* LoginViewController.swift */,
+				E8D6E5EE203A338C00115C05 /* SignupViewController.swift */,
+			);
+			path = MyAccount;
+			sourceTree = "<group>";
+		};
 		E84C85E920387250005B8F77 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +146,7 @@
 		E84C85F420387250005B8F77 /* UTMB */ = {
 			isa = PBXGroup;
 			children = (
+				E8155E5B208521D1002EB21F /* MyAccount */,
 				E80D0736205812040003F045 /* CoursePage */,
 				E8D6E5D4203A196E00115C05 /* Cells */,
 				E8D6E5D3203A196700115C05 /* ViewController */,
@@ -164,9 +175,6 @@
 			children = (
 				E8D6E5D5203A198D00115C05 /* MainTabController.swift */,
 				E8D6E5D7203A19BF00115C05 /* HomePageController.swift */,
-				E8D6E5DB203A1A0700115C05 /* MeController.swift */,
-				E8D6E5EC203A338200115C05 /* LoginViewController.swift */,
-				E8D6E5EE203A338C00115C05 /* SignupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
