@@ -125,6 +125,15 @@ extension bookList:UITableViewDataSource, UITableViewDelegate{
         cell.passingBookAddressForPDFView = Array(booklist.values)[indexPath.row]
         cell.bookListCellPDFdelegate = self
         cell.cellindex = indexPath.row
+        if let bookCover = self.bookCoverData[Array(booklist.keys)[indexPath.row]]{
+            guard let url = URL(string: bookCover) else{return UITableViewCell()}
+            cell.bookFrontImage.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder2"), completed: nil)
+        }
+        
+        
+        
+//        cell.bookFrontImage.image =
+//        cell.bookFrontImage.sd_setImage(with: <#T##URL?#>, placeholderImage: <#T##UIImage?#>, options: <#T##SDWebImageOptions#>, completed: <#T##SDExternalCompletionBlock?##SDExternalCompletionBlock?##(UIImage?, Error?, SDImageCacheType, URL?) -> Void#>)
         return cell
     }
     
@@ -241,8 +250,11 @@ extension bookList:coverImageDelegate{
                     storage?.child("bookCover/" + target.bookName.text! + ".png").putData(data, metadata: nil, completion: { (metadata, error) in
                         print("get into storage ready")
                         if let metadata = metadata {
-                            let path = "course/" + program + self.tapped_course_code!
-                            self.ref?.updateChildValues([path:["coverImage":metadata.downloadURL()]])
+//                            let path = "course/" + program + self.tapped_course_code!
+                            guard let downurl = metadata.downloadURLs?.last else{return }
+                            
+                            self.ref?.child("course").child(String(program)).child(self.tapped_course_code!).child(bookName).setValue(["coverImage":downurl.absoluteString,"pdfAddress":target.passingBookAddressForPDFView])
+                            
                         }
                     })
                     
