@@ -22,6 +22,8 @@ class bookList: UIViewController {
     var tapped_course_code:String?
     var booklist = [String:String]()
     var bookWarehouse = [String:String]()
+    var bookCoverData = [String:String]()
+//    var delegate:setCoverInCourseListDeletegate?
     var storage:StorageReference?
     @IBAction func back(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -29,7 +31,7 @@ class bookList: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        observing()
+        observing_new()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,6 +121,7 @@ extension bookList:UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "book") as! bookListCell
         cell.selectionStyle = .none
         cell.bookName.text = Array(booklist.keys)[indexPath.row]
+        cell.bookNameData = Array(booklist.keys)[indexPath.row]
         cell.passingBookAddressForPDFView = Array(booklist.values)[indexPath.row]
         cell.bookListCellPDFdelegate = self
         cell.cellindex = indexPath.row
@@ -224,11 +227,43 @@ extension bookList:coverImageDelegate{
         let target = tableV.cellForRow(at: index!) as! bookListCell
         target.bookFrontImage.contentMode = .scaleAspectFill
         target.bookFrontImage.image = image
+//        target.bookFrontImage.sd
+//        delegate?.setCoverForOneBook(cellPath: index, imageData: image, bookName: target.bookName.text!)
+        print("save Cover and look at bookName", target.bookName.text)
+        if let bookName = target.bookName.text{
+            if self.bookCoverData[target.bookName.text!] != nil{
+                print("Have cover already")
+            }else{
+                if let data = UIImagePNGRepresentation(image){
+                    print("save cover in local already2",data)
+                    let index = tapped_course_code!.index((tapped_course_code?.startIndex)!, offsetBy: 2)
+                    let program = tapped_course_code![...index] //such as Mat
+                    storage?.child("bookCover/" + target.bookName.text! + ".png").putData(data, metadata: nil, completion: { (metadata, error) in
+                        print("get into storage ready")
+                        if let metadata = metadata {
+                            let path = "course/" + program + self.tapped_course_code!
+                            self.ref?.updateChildValues([path:["coverImage":metadata.downloadURL()]])
+                        }
+                    })
+                    
+                    set_coverImage(bookName: bookName, imageData: data.base64EncodedString())
+                    print("save cover in local already")
+                }else{
+                    print("can not convert to data")
+                }
+                
+            }
+        }
+        
     }
     
     
     
 }
+//
+//protocol setCoverInCourseListDeletegate {
+//    func setCoverForOneBook(cellPath:IndexPath,imageData:UIImage, bookName:String)
+//}
 
 
 

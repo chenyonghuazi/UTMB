@@ -30,4 +30,27 @@ extension bookList{
         
     }
     
+    func observing_new(){
+//        if let existField
+        
+        let index = tapped_course_code!.index((tapped_course_code?.startIndex)!, offsetBy: 2)
+        let program = tapped_course_code![...index] //such as Mat
+        ref?.child("course").child(String(program)).child(tapped_course_code!).observe(.childAdded, with: { (snapshot) in
+            print("snapshotHere",snapshot)
+            if snapshot.value != nil{
+                if let dic = snapshot.value as? [String:String]{
+                    self.booklist[snapshot.key] = dic["pdfAddress"]
+                    if let coverId = dic["coverImage"]{
+                        self.bookCoverData[snapshot.key] = coverId
+                    }
+                    
+                    print("***",self.booklist)
+                }
+                self.tableV.reloadData()
+            }
+            self.tableV.reloadData()
+        })
+        
+    }
+    
 }

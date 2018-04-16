@@ -43,5 +43,39 @@ extension bookList{
         }
     }
     
+    func checkBookCover(bookName:String) -> Bool{
+        if UserDefaults.standard.value(forKey: "CoverImage") == nil{
+            let coverImage = [String:String]()
+            UserDefaults.standard.set(coverImage, forKey: "CoverImage")
+            return false
+        }else{
+            let coverImageSet = UserDefaults.standard.value(forKey: "CoverImage") as! [String:String]
+            if coverImageSet[bookName] != nil{
+                return true
+            }else{
+                return false
+            }
+        }
+    }
+    func get_coverImage(bookName:String) -> String{
+        
+        guard let warehouse = UserDefaults.standard.value(forKey: "CoverImage") as? [String:String] else{return "err"}
+        if let data = warehouse[bookName]{
+            return data
+        }
+        else{
+            
+            return "nil"
+        }
+        
+    }
+    func set_coverImage(bookName:String,imageData:String){
+        if !checkBookCover(bookName: bookName){
+            var newLocalBookData = UserDefaults.standard.value(forKey: "CoverImage") as! [String:String]
+            newLocalBookData[bookName] = imageData
+            UserDefaults.standard.set(newLocalBookData, forKey: "CoverImage")
+            print("setted!")
+        }
+    }
     
 }

@@ -24,7 +24,7 @@ class bookListCell: UITableViewCell {
     var imageAddress:String?
     var bookListCellPDFdelegate:presentPDFViewDelegate?
     var cellindex:Int?
-    
+    var bookNameData:String?
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var bookName: UILabel!
     @IBOutlet weak var bookFrontImage: UIImageView!
@@ -32,7 +32,11 @@ class bookListCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.bookFrontImage.contentMode = .scaleAspectFill
+        print("here",bookName.text)
+//        if let bookTitle = bookName.text{
         self.bookFrontImage.image = #imageLiteral(resourceName: "placeholder2")
+
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -114,22 +118,28 @@ class bookListCell: UITableViewCell {
     
 }
 
-//extension bookListCell:coverImageDelegate{
-//    func setCover(cell: UITableViewCell, image: UIImage) {
-//        let target = (cell as! bookListCell)
-//        target.
-//        target.bookFrontImage.contentMode = .scaleAspectFill
-//
-//        target.bookFrontImage.image = image
-//
-//    }
-
+extension bookListCell{
     
+    func get_coverImage(bookName:String) -> String{
+        
+        guard let warehouse = UserDefaults.standard.value(forKey: "CoverImage") as? [String:String] else{return "err"}
+        if let data = warehouse[bookName]{
+            return data
+        }
+        else{
+            
+            return "nil"
+        }
+        
+    }
+    func setCoverImage(){
     
-    
-    
-    
-    
-    
-//}
+    if get_coverImage(bookName: bookNameData!) != "nil"{
+    print(bookNameData!)
+    self.bookFrontImage.image = UIImage(data: get_coverImage(bookName: bookNameData!).data(using: .utf8)!)
+    }else{
+    self.bookFrontImage.image = #imageLiteral(resourceName: "placeholder2")
+    }
+    }
+}
 

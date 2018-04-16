@@ -57,7 +57,55 @@ extension courseList: UITableViewDelegate, UITableViewDataSource{
         destVC.tapped_course_code = courseList![indexPath.row]
         present(destVC, animated: true, completion: nil)
     }
-    
-    
-    
 }
+//extension courseList:setCoverInCourseListDeletegate{
+//    func setCoverForOneBook(cellPath: IndexPath, imageData: UIImage, bookName: String) {
+//        if let data = UIImagePNGRepresentation(imageData){
+//            if checkBookCover(bookName: bookName){
+//                print("already have cover")
+//            }else{
+//                guard let imageData = String(data: data, encoding: String.Encoding.utf8) else{return }
+//                set_coverImage(bookName: bookName, imageData: imageData)
+//            }
+//        }
+//    }
+//
+//
+//}
+//
+//extension courseList{
+//    func checkBookCover(bookName:String) -> Bool{
+//        if UserDefaults.standard.value(forKey: "CoverImage") == nil{
+//            let coverImage = [String:String]()
+//            UserDefaults.standard.set(coverImage, forKey: "CoverImage")
+//            return false
+//        }else{
+//            let coverImageSet = UserDefaults.standard.value(forKey: "CoverImage") as! [String:String]
+//            if coverImageSet[bookName] != nil{
+//                return true
+//            }else{
+//                return false
+//            }
+//        }
+//    }
+//    func get_coverImage(bookName:String) -> String{
+//
+//        guard let warehouse = UserDefaults.standard.value(forKey: "CoverImage") as? [String:String] else{return "err"}
+//        if let data = warehouse[bookName]{
+//            return data
+//        }
+//        else{
+//
+//            return "nil"
+//        }
+//
+//    }
+//    func set_coverImage(bookName:String,imageData:String){
+//        if !checkBookCover(bookName: bookName){
+//            var newLocalBookData = UserDefaults.standard.value(forKey: "CoverImage") as! [String:String]
+//            newLocalBookData[bookName] = imageData
+//            UserDefaults.standard.set(newLocalBookData, forKey: "CoverImage")
+//            print("setted!")
+//        }
+//    }
+//}
