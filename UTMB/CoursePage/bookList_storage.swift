@@ -53,13 +53,16 @@ extension bookList:UITextFieldDelegate,MFMailComposeViewControllerDelegate{
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        view.endEditing(true)
-//        if self.popOutV != nil && touches.first?.view != self.popOutV{
-//            self.popOutV!.isHidden = true
-//        }
+        print(self.popOutView != nil)
+        print(touches.first?.view != self.popOutView)
+        print(self.popOutView.alpha == 1.0)
         
-        if !self.popOutView.isHidden{
+        if self.popOutView != nil && touches.first?.view != self.popOutView && self.popOutView.alpha == 1.0{
+            self.popOutView.alpha = 0
             view.endEditing(true)
         }
+        
+        
     }
     
     func configureMailController() ->  MFMailComposeViewController{

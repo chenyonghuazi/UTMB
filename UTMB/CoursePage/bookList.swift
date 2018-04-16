@@ -11,7 +11,7 @@ import Firebase
 import Alamofire
 import MBProgressHUD
 import MessageUI
-class bookList: UIViewController {
+class bookList: UIViewController,UITextFieldDelegate {
 //    var popOutV:UIView?
 //    var pdfAddress:UITextView?
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -53,16 +53,10 @@ class bookList: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    */
     
     @IBOutlet weak var PDFAddress: UILabel!
     
@@ -70,6 +64,7 @@ class bookList: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var AddressField: UITextField!
     @IBAction func uploadNoice(_ sender: UIBarButtonItem) {
+        popOutView.alpha = 1.0
         popOutView.translatesAutoresizingMaskIntoConstraints = false
         popOutView.anchor(top: self.navigationBar.bottomAnchor, leading: self.view.leadingAnchor, bottom: self.view.bottomAnchor, trailing: self.view.trailingAnchor, padding: .init(top: self.view.frame.height / 3 - self.navigationBar.frame.height, left: 20, bottom: self.view.frame.height / 3, right: 20))
 //        self.view.alpha = 0.5
@@ -86,7 +81,8 @@ class bookList: UIViewController {
         PDFAddress.text = "PDF URL:"
         AddressField.translatesAutoresizingMaskIntoConstraints = false
         AddressField.anchor(top: PDFAddress.topAnchor, leading: PDFAddress.trailingAnchor, bottom: PDFAddress.bottomAnchor, trailing: popOutView.trailingAnchor, padding: .init(top: 10, left: 5, bottom: 10, right: 5), size: .init(width: 0, height: 0))
-        
+        AddressField.delegate = self
+        AddressField.text = ""
         submitButton.translatesAutoresizingMaskIntoConstraints = false
                 submitButton.anchor(top: AddressField.bottomAnchor, leading: AddressField.leadingAnchor, bottom: popOutView.bottomAnchor, trailing: nil, padding: .init(top: 10, left: 0, bottom: 5, right: 0), size: .init(width: 60, height: 0))
         submitButton.setTitle("submit", for: .normal)
@@ -272,10 +268,11 @@ extension bookList:coverImageDelegate{
     
     
 }
-//
-//protocol setCoverInCourseListDeletegate {
-//    func setCoverForOneBook(cellPath:IndexPath,imageData:UIImage, bookName:String)
-//}
+// touchhasbegan
+extension bookList{
+    
+    
+}
 
 
 
