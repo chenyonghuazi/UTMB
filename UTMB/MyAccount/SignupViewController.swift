@@ -11,9 +11,11 @@ import Firebase
 
 class SignupViewController: UIViewController {
 
+    
+    var ref:DatabaseReference?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ref = Database.database().reference()
         // Do any additional setup after loading the view.
     }
 
@@ -35,20 +37,32 @@ class SignupViewController: UIViewController {
             }
             else{
                 self.tabBarController?.selectedIndex = 0
+                guard let uid = user?.uid else {return}
+                guard let email = user?.email else {return}
+                self.storeThings(uid: uid, email: email, completion: {
+                    self.updateProfilesTest(key: uid)
+                })
             }
             
         }
     }
+}
+
+extension SignupViewController{
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func storeThings(uid:String, email:String,completion:() -> Void){
+        let key = ref?.child("user").childByAutoId().key
+        ref?.child("user").child(key!).setValue(["userId":uid,"email":email]);
+        completion()
     }
-    */
-
+    
+    func updateProfilesTest(key:String){
+        let update = [
+            "location":"100,100",
+            "phoneNumber":"123456789",
+            "email":"asdasdasd"
+        ]
+        let childUpdates = ["/user/\(key)":update]
+        ref?.updateChildValues(childUpdates)
+    }
 }

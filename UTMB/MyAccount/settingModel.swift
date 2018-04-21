@@ -8,7 +8,16 @@
 
 import Foundation
 
-struct settingModel {
-    var id:String
+class settingModel {
+    var title:String
+    var id:String = ""
+    var content:String = ""
+    var phoneNumber:String = ""
     
+    init(title:String, id:String, content:String, phoneNumber:String) {
+        self.title = title
+        self.id = id
+        self.content = content
+        self.phoneNumber = phoneNumber
+    }
 }

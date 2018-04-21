@@ -11,11 +11,20 @@ import Firebase
 
 class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
-//    var settingData:[Int:[settingModel]]?
-//    var section1:[settingModel]?
+    var settingData:[Int:[settingModel]]?
+    var section1:[settingModel]?
 //    var section2
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        section1 = [settingModel(title: "finish profile", id: "", content: "", phoneNumber: "")]
+        
+        settingData = [0:section1!,1:section1!]
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let button = UIBarButtonItem(title: "signout", style: .plain, target: self, action: #selector(handleSignout))
         
         navigationItem.leftBarButtonItem = button
@@ -48,22 +57,44 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return (settingData?.count)!
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+//        if section == 0{
+//            return 1
+//        }
+//        else if section == 1{
+//            return 5
+//        }else{
+//            return 3
+//        }
+        return settingData![section]!.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0{
         let cell = tableView.dequeueReusableCell(withIdentifier: "MeLoginCell", for: indexPath) as! MeLoginCell
-        return cell
+            return cell}
+        else if indexPath.section == 1{
+            let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+            cell.textLabel?.text = settingData![indexPath.section]![indexPath.row].title
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
+        return UITableViewCell()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 0{
+        if indexPath.section == 0{
             if Auth.auth().currentUser == nil{
                 performSegue(withIdentifier: "loginNow", sender: nil)
             }
         }
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1{
+            return "Profile"
+        }
+        return ""
     }
     
     // MARK: - Navigation
@@ -82,3 +113,4 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
 }
+
