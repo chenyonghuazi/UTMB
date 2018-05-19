@@ -19,7 +19,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        emailTextField.text = "a@qq.com"
+        passwordField.text = "12345678"
         // Do any additional setup after loading the view.
     }
 
@@ -43,8 +44,9 @@ class LoginViewController: UIViewController {
             }
             else{
                 self.navigationController?.popViewController(animated: true)
-                let homePage = HomePageController()
-                self.present(homePage, animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
+//                let homePage = HomePageController()
+//                self.present(homePage, animated: true, completion: nil)
                 
             }
             

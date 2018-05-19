@@ -17,6 +17,7 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
         ref = Database.database().reference()
         // Do any additional setup after loading the view.
+//        Auth.auth().currentUser.
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,12 +37,11 @@ class SignupViewController: UIViewController {
                 print(error?.localizedDescription)
             }
             else{
-                self.tabBarController?.selectedIndex = 0
+                //self.tabBarController?.selectedIndex = 0
+                self.navigationController?.popViewController(animated: true)
                 guard let uid = user?.uid else {return}
                 guard let email = user?.email else {return}
-                self.storeThings(uid: uid, email: email, completion: {
-                    self.updateProfilesTest(key: uid)
-                })
+                self.storeThings(uid: uid, email: email)
             }
             
         }
@@ -50,10 +50,16 @@ class SignupViewController: UIViewController {
 
 extension SignupViewController{
     
-    func storeThings(uid:String, email:String,completion:() -> Void){
+    func storeThings(uid:String, email:String){
         let key = ref?.child("user").childByAutoId().key
         ref?.child("user").child(key!).setValue(["userId":uid,"email":email]);
-        completion()
+//        completion(key!)
+    }
+    
+    func storeThings2(uid:String, email:String,completion:(_ key:String) -> Void){
+        let key = ref?.child("user").childByAutoId().key
+        ref?.child("user").child(key!).setValue(["userId":uid,"email":email]);
+        completion(key!)
     }
     
     func updateProfilesTest(key:String){
