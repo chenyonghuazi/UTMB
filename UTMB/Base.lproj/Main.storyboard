@@ -55,45 +55,42 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nuG-Eu-sKW">
-                                                        <size key="itemSize" width="120" height="120"/>
+                                                        <size key="itemSize" width="110" height="95"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCategoryCollectionCell" id="zHY-tM-LH8" customClass="HomeCategoryCollectionCell" customModule="UTMB" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="15" width="120" height="120"/>
+                                                            <rect key="frame" x="20" y="27.5" width="110" height="95"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="110" height="95"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjp-zT-ACz">
-                                                                        <rect key="frame" x="36" y="40" width="48" height="50"/>
-                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <connections>
-                                                                            <action selector="fireInHole:" destination="zHY-tM-LH8" eventType="touchUpInside" id="Adr-1m-x16"/>
-                                                                        </connections>
-                                                                    </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQp-Bo-Dwr">
-                                                                        <rect key="frame" x="0.0" y="90" width="120" height="21"/>
+                                                                        <rect key="frame" x="0.0" y="60" width="110" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y7q-LI-swG">
+                                                                        <rect key="frame" x="0.0" y="5" width="110" height="55"/>
+                                                                    </imageView>
                                                                 </subviews>
                                                             </view>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailingMargin" secondItem="jjp-zT-ACz" secondAttribute="trailing" constant="20" id="1Qf-PL-4PR"/>
-                                                                <constraint firstItem="AQp-Bo-Dwr" firstAttribute="top" secondItem="jjp-zT-ACz" secondAttribute="bottom" id="82m-A8-td0"/>
-                                                                <constraint firstItem="jjp-zT-ACz" firstAttribute="leading" secondItem="zHY-tM-LH8" secondAttribute="leadingMargin" constant="20" id="AtA-Hx-s8h"/>
-                                                                <constraint firstItem="AQp-Bo-Dwr" firstAttribute="leading" secondItem="zHY-tM-LH8" secondAttribute="leading" id="N7O-3h-fUu"/>
-                                                                <constraint firstItem="jjp-zT-ACz" firstAttribute="top" secondItem="zHY-tM-LH8" secondAttribute="topMargin" constant="20" id="iVt-ku-mFq"/>
-                                                                <constraint firstAttribute="bottomMargin" secondItem="jjp-zT-ACz" secondAttribute="bottom" constant="30" id="r4H-bM-PUf"/>
-                                                                <constraint firstAttribute="trailing" secondItem="AQp-Bo-Dwr" secondAttribute="trailing" id="rZj-0r-Zgv"/>
+                                                                <constraint firstItem="y7q-LI-swG" firstAttribute="top" secondItem="zHY-tM-LH8" secondAttribute="top" constant="5" id="3mr-oF-jZt"/>
+                                                                <constraint firstAttribute="trailing" secondItem="AQp-Bo-Dwr" secondAttribute="trailing" id="BTC-wN-i3c"/>
+                                                                <constraint firstAttribute="bottom" secondItem="y7q-LI-swG" secondAttribute="bottom" constant="30" id="G1d-3N-hQz"/>
+                                                                <constraint firstItem="y7q-LI-swG" firstAttribute="leading" secondItem="zHY-tM-LH8" secondAttribute="leading" id="R6u-RO-LS0"/>
+                                                                <constraint firstAttribute="bottom" secondItem="AQp-Bo-Dwr" secondAttribute="bottom" id="RVv-Wj-vlZ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="y7q-LI-swG" secondAttribute="trailing" id="ZtX-gP-6yy"/>
+                                                                <constraint firstItem="AQp-Bo-Dwr" firstAttribute="top" secondItem="y7q-LI-swG" secondAttribute="bottom" id="cb7-Z1-rrr"/>
+                                                                <constraint firstItem="AQp-Bo-Dwr" firstAttribute="leading" secondItem="zHY-tM-LH8" secondAttribute="leading" id="nZN-Jf-BNr"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="cellImageButton" destination="jjp-zT-ACz" id="YTE-wX-NQ2"/>
+                                                                <outlet property="imageV" destination="y7q-LI-swG" id="Acw-LX-lbH"/>
                                                                 <outlet property="myLabel" destination="AQp-Bo-Dwr" id="yhg-hZ-9U0"/>
                                                             </connections>
                                                         </collectionViewCell>
@@ -313,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOf-8v-QYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1848.8" y="-604.04797601199402"/>
+            <point key="canvasLocation" x="1822" y="-604"/>
         </scene>
         <!--Main Tab Controller-->
         <scene sceneID="IR6-6T-zkJ">

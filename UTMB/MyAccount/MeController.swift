@@ -24,8 +24,12 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let button = UIBarButtonItem(title: "signout", style: .plain, target: self, action: #selector(handleSignout))
+//        let content = "signout"
+//
+//        let title = UIFont(name: "Savoye Let", size: 30)
+//        let content_title = NSAttributedString(string: "signout", attributes: [NSAttributedStringKey.font : title])
+        let button = UIBarButtonItem(title: "Signout", style: .plain, target: self, action: #selector(handleSignout))
+        button.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "Savoye Let", size: 30)!], for: UIControlState.normal)
         
         navigationItem.leftBarButtonItem = button
         let navigationBar = self.navigationController?.navigationBar

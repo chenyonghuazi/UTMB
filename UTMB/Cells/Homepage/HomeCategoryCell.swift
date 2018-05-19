@@ -45,19 +45,23 @@ class HomeCategoryCell: UITableViewCell,UICollectionViewDataSource,UICollectionV
         let image2 = #imageLiteral(resourceName: "FindTextBook")
         let image3 = #imageLiteral(resourceName: "post")
         let image4 = #imageLiteral(resourceName: "scan")
-        cell.cellImageButton.frame.size = image.size
+//        cell.imageV.frame.size = image.size
 //        cell.cellImageButton.layer.cornerRadius = cell.cellImageButton.frame.height / 2 - 25
-        cell.cellImageButton.clipsToBounds = true
-        cell.cellImageButton.contentMode = .scaleAspectFit
+//        cell.imageV.layer.cornerRadius = cell.imageV.frame.width / 2
+        cell.imageV.clipsToBounds = true
+        cell.imageV.contentMode = .scaleAspectFit
 //        cell.cellImageButton.setImage(image, for: .normal)
         cell.myLabel.text = bookButton[indexPath.row]
         if indexPath.row == 0{
-            cell.cellImageButton.setImage(image2, for: .normal)
+//            cell.cellImageButton.setImage(image2, for: .normal)
+            cell.imageV.image = image2
         }else if indexPath.row == 1{
-            cell.cellImageButton.setImage(image3, for: .normal)
+//            cell.cellImageButton.setImage(image3, for: .normal)
+            cell.imageV.image = image3
         }
         else if indexPath.row == 2{
-            cell.cellImageButton.setImage(image4, for: .normal)
+//            cell.cellImageButton.setImage(image4, for: .normal)
+            cell.imageV.image = image4
         }
         return cell
     }

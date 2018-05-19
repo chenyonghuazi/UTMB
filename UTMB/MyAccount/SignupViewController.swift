@@ -41,7 +41,9 @@ class SignupViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
                 guard let uid = user?.uid else {return}
                 guard let email = user?.email else {return}
-                self.storeThings(uid: uid, email: email)
+//                self.storeThings(uid: uid, email: email)
+                self.storeThings2(uid: uid, email: email, completion: self.updateProfilesTest)
+                
             }
             
         }
@@ -57,9 +59,12 @@ extension SignupViewController{
     }
     
     func storeThings2(uid:String, email:String,completion:(_ key:String) -> Void){
-        let key = ref?.child("user").childByAutoId().key
-        ref?.child("user").child(key!).setValue(["userId":uid,"email":email]);
-        completion(key!)
+        
+//        let key = ref?.child("user").childByAutoId().key
+//        ref?.child("user").child(key!).setValue(["userId":uid,"email":email]);
+        //completion(key!)
+        ref?.child("user").child(uid).setValue(["email":email])
+//        completion(key!)
     }
     
     func updateProfilesTest(key:String){
