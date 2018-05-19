@@ -43,8 +43,9 @@ class LoginViewController: UIViewController {
                 self.statusLabel.text =  error?.localizedDescription
             }
             else{
-                self.navigationController?.popViewController(animated: true)
-                self.dismiss(animated: true, completion: nil)
+//                self.navigationController?.popViewController(animated: true)
+//                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
 //                let homePage = HomePageController()
 //                self.present(homePage, animated: true, completion: nil)
                 

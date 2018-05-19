@@ -92,6 +92,8 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if Auth.auth().currentUser == nil{
                 performSegue(withIdentifier: "loginNow", sender: nil)
             }
+        }else if indexPath.section == 1 && indexPath.row == 0{
+            performSegue(withIdentifier: "detail", sender: nil)
         }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

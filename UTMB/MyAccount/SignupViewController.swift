@@ -9,15 +9,18 @@
 import UIKit
 import Firebase
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     
     var ref:DatabaseReference?
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        // Do any additional setup after loading the view.
-//        Auth.auth().currentUser.
+        
+        //setting portrait imageview gesture
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(presentImagePickerView))
+        portraitImage.isUserInteractionEnabled = true
+        portraitImage.addGestureRecognizer(gesture)
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +32,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signupButton: UIButton!
     
+    @IBOutlet weak var portraitImage: UIImageView!
     @IBAction func signup(_ sender: UIButton) {
         let email = emailTextField.text!
         let password = passwordField.text!
@@ -38,7 +42,7 @@ class SignupViewController: UIViewController {
             }
             else{
                 //self.tabBarController?.selectedIndex = 0
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
                 guard let uid = user?.uid else {return}
                 guard let email = user?.email else {return}
 //                self.storeThings(uid: uid, email: email)
@@ -49,7 +53,7 @@ class SignupViewController: UIViewController {
         }
     }
 }
-
+//firebase function backup
 extension SignupViewController{
     
     func storeThings(uid:String, email:String){
@@ -77,3 +81,19 @@ extension SignupViewController{
         ref?.updateChildValues(childUpdates)
     }
 }
+//end
+
+
+extension SignupViewController:setPortraitImageDelegate{
+    func setImage(image: UIImage,view:UIViewController) {
+        image.draw(in: CGRect(origin: portraitImage.frame.origin, size: portraitImage.frame.size))
+        portraitImage.image = image
+        
+        portraitImage.contentMode = .scaleAspectFit
+    }
+    
+    
+}
+
+
+

@@ -12,13 +12,22 @@ class detailVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        self.navigationController?.navigationBar.topItem?.title = "Profile"
         // Do any additional setup after loading the view.
+        self.title = "Profile"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
 
