@@ -11,12 +11,13 @@ import Firebase
 
 class SignupViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-    
+    // variables
+    var storage:StorageReference?
     var ref:DatabaseReference?
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        
+        storage = Storage.storage().reference()
         //setting portrait imageview gesture
         let gesture = UITapGestureRecognizer(target: self, action: #selector(presentImagePickerView))
         portraitImage.isUserInteractionEnabled = true
@@ -86,8 +87,15 @@ extension SignupViewController{
 
 extension SignupViewController:setPortraitImageDelegate{
     func setImage(image: UIImage,view:UIViewController) {
-        image.draw(in: CGRect(origin: portraitImage.frame.origin, size: portraitImage.frame.size))
+//        image.draw(in: CGRect(origin: portraitImage.frame.origin, size: portraitImage.frame.size))
         portraitImage.image = image
+        if let data = UIImageJPEGRepresentation(image,0.5){
+            storage?.child("/portrait.png").putData(data, metadata: nil, completion: { (metadata, error) in
+                if let metadata = metadata{
+                    print(metadata.downloadURLs?.last)
+                }
+            })
+        }
         
         portraitImage.contentMode = .scaleAspectFit
     }

@@ -78,5 +78,19 @@ extension UIView{
         }
     }
 }
+extension UIImage{
+    func crop(to:CGRect,view:UIImageView) -> UIImage{
+        let kuangkuang_top_distance = to.origin.y - view.frame.origin.y  
+            let x = to.origin.x * self.scale
+            let y = to.origin.y * self.scale
+            let width = to.width * self.scale
+            let height = to.height * self.scale
+            let cropZone =  CGRect(x: x, y: y, width: width, height: height)
+        
+        let cgImage = self.cgImage?.cropping(to: cropZone)
+        let image = UIImage(cgImage: cgImage!, scale: self.scale, orientation: self.imageOrientation)
+        return image
+    }
+}
 
 
