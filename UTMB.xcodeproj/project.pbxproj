@@ -43,6 +43,8 @@
 		E8D6E5EB203A320700115C05 /* MeLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6E5EA203A320700115C05 /* MeLoginCell.swift */; };
 		E8D6E5ED203A338200115C05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6E5EC203A338200115C05 /* LoginViewController.swift */; };
 		E8D6E5EF203A338C00115C05 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6E5EE203A338C00115C05 /* SignupViewController.swift */; };
+		E8FEEF0C20B8CB1700259901 /* firebaseGetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FEEF0B20B8CB1700259901 /* firebaseGetData.swift */; };
+		E8FEEF0E20B8D08B00259901 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FEEF0D20B8D08B00259901 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		E8D6E5EA203A320700115C05 /* MeLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeLoginCell.swift; sourceTree = "<group>"; };
 		E8D6E5EC203A338200115C05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E8D6E5EE203A338C00115C05 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		E8FEEF0B20B8CB1700259901 /* firebaseGetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firebaseGetData.swift; sourceTree = "<group>"; };
+		E8FEEF0D20B8D08B00259901 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +182,7 @@
 				E8D6E5D4203A196E00115C05 /* Cells */,
 				E8D6E5D3203A196700115C05 /* ViewController */,
 				E84C85F520387250005B8F77 /* AppDelegate.swift */,
+				E8FEEF0B20B8CB1700259901 /* firebaseGetData.swift */,
 				E84C85F720387250005B8F77 /* ViewController.swift */,
 				E822446420B0629D006A2862 /* font_style.swift */,
 				E84C85F920387250005B8F77 /* Main.storyboard */,
@@ -186,6 +191,7 @@
 				E84C860420387250005B8F77 /* Info.plist */,
 				E84C85FC20387250005B8F77 /* UTMB.xcdatamodeld */,
 				E84C860A203872A6005B8F77 /* GoogleService-Info.plist */,
+				E8FEEF0D20B8D08B00259901 /* User.swift */,
 			);
 			path = UTMB;
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 				E8D6E5DC203A1A0700115C05 /* MeController.swift in Sources */,
 				E8D6E5E7203A229600115C05 /* HomeCategoryCollectionCell.swift in Sources */,
 				E8D6E5E3203A220000115C05 /* HomeRecommandCell.swift in Sources */,
+				E8FEEF0C20B8CB1700259901 /* firebaseGetData.swift in Sources */,
 				E82D44FA205FF56D008C8104 /* bookList_localData.swift in Sources */,
 				E8D6E5DA203A19D000115C05 /* CategoryController.swift in Sources */,
 				E8AA184C205C18B200C81FF2 /* Data2.swift in Sources */,
@@ -441,6 +448,7 @@
 				E88D2C2220B0B1FA0027288A /* cropImage.swift in Sources */,
 				E84C85F620387250005B8F77 /* AppDelegate.swift in Sources */,
 				E8D6E5D8203A19BF00115C05 /* HomePageController.swift in Sources */,
+				E8FEEF0E20B8D08B00259901 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

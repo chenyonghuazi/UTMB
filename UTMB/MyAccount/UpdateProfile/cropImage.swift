@@ -40,7 +40,7 @@ class cropImage: UIViewController,UITabBarDelegate {
         
         //setting background source image
         originalImage.image = originUIImage
-        originalImage.contentMode = .scaleAspectFill
+        originalImage.contentMode = .scaleAspectFit
         //end
         
         //set up pan gesture
@@ -49,20 +49,7 @@ class cropImage: UIViewController,UITabBarDelegate {
     }
     
     //set up pan gesture recognizer for cropRect
-    func addPanGesture(view:UIImageView){
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(sender:)))
-        view.addGestureRecognizer(pan)
-    }
 
-    @objc func handlePanGesture(sender:UIPanGestureRecognizer){
-        let fileView = sender.view
-        let transition = sender.translation(in: self.view)
-        if sender.state == .began || sender.state == .changed{
-            print("moving,x:",transition.x)
-            print("moving,y:",transition.y)
-            fileView!.center = CGPoint(x: fileView!.center.x + transition.x, y:fileView!.center.y + transition.y)
-        }
-    }
     
     @IBAction func panPerform(_ sender: UIPanGestureRecognizer) {
         let fileView = sender.view!
@@ -75,6 +62,10 @@ class cropImage: UIViewController,UITabBarDelegate {
                 fileView.center = CGPoint(x: fileView.center.x + transition.x, y:fileView.center.y + transition.y)
                 sender.setTranslation(CGPoint.zero
                     , in: sender.view)
+                print(originUIImage!.size.height,"height")
+                print(originUIImage!.size.width,"width")
+                print(originalImage.frame.width,"边框宽")
+                print(originalImage.frame.height,"边框高")
             }
 //            fileView.center = CGPoint(x: fileView.center.x + transition.x, y:fileView.center.y + transition.y)
 //            sender.setTranslation(CGPoint.zero
@@ -97,12 +88,18 @@ class cropImage: UIViewController,UITabBarDelegate {
                 
                 if let image = originUIImage{
                     
-                    let imageViewwidthScale = max((image.size.width) / originalImage.frame.size.width,
-                                                  (image.size.height) / originalImage.frame.size.height)
+                    var imageViewwidthScale = (image.size.width) / originalImage.frame.size.width
+                                                  
+                    var imageViewheightScale = image.size.height / originalImage.frame.height
+                    if imageViewheightScale > imageViewwidthScale{
+                        imageViewwidthScale *= 1.15
+                    }else{
+                        imageViewheightScale *= 1.15
+                    }
+                    let cropZone = CGRect(x: cropRect.frame.origin.x * imageViewwidthScale, y: cropRect.frame.origin.y * imageViewheightScale, width: cropRect.frame.size.width * imageViewwidthScale, height: cropRect.frame.size.height * imageViewheightScale)
+                    guard let originalImage_cropcgImage = image.cgImage?.cropping(to: cropZone) else {return }
+                    let croppedImage = UIImage(cgImage: originalImage_cropcgImage,scale:1,orientation:image.imageOrientation)
                     
-                    let cropZone = CGRect(x: cropRect.frame.origin.x * imageViewwidthScale, y: cropRect.frame.origin.y * imageViewwidthScale, width: cropRect.frame.size.width * imageViewwidthScale, height: cropRect.frame.size.height * imageViewwidthScale)
-                    guard let originalImage_cropcgImage = originalImage.image?.cgImage?.cropping(to: cropZone) else {return }
-                    let croppedImage = UIImage(cgImage: originalImage_cropcgImage)
                     self.dismiss(animated: true){
                         self.delegate?.setImage(image: croppedImage, view: self)//self.cropRect.frame
                     }

@@ -10,6 +10,7 @@ import UIKit
 
 class MeLoginCell: UITableViewCell {
 
+    @IBOutlet weak var portraitV: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -13,14 +13,22 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var settingData:[Int:[settingModel]]?
     var section1:[settingModel]?
-//    var section2
-    
+    var database:DatabaseReference?
+    var userInfo:[String:String] = [String:String]()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        database = Database.database().reference()
         section1 = [settingModel(title: "finish profile", id: "", content: "", phoneNumber: "")]
         
         settingData = [0:section1!,1:section1!]
+        
+        //update the portrait and user info
+        if let user = Auth.auth().currentUser{
+            getUserData(uid: user.uid)
+        }
+        
+        
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +40,19 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
         button.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "Savoye Let", size: 30)!], for: UIControlState.normal)
         
         navigationItem.leftBarButtonItem = button
-        let navigationBar = self.navigationController?.navigationBar
-        let baricon = #imageLiteral(resourceName: "barIcon")
-        let topicon = UIImageView(image: baricon)
-        topicon.frame = CGRect(x: 2 * navigationBar!.frame.width / 3 - baricon.size.width / 2, y: navigationBar!.frame.height / 2 - baricon.size.height / 2, width: navigationBar!.frame.width / 2, height: navigationBar!.frame.height)
-        topicon.contentMode = .scaleAspectFit
-        navigationItem.titleView = topicon
-        // Do any additional setup after loading the view.
+        //start of setting titleView
+        
+//        let navigationBar = self.navigationController?.navigationBar
+//        let baricon = #imageLiteral(resourceName: "barIcon")
+//        let topicon = UIImageView(image: baricon)
+//        topicon.frame = CGRect(x: 2 * navigationBar!.frame.width / 3 - baricon.size.width / 2, y: navigationBar!.frame.height / 2 - baricon.size.height / 2, width: navigationBar!.frame.width / 2, height: navigationBar!.frame.height)
+//        topicon.contentMode = .scaleAspectFit
+//        navigationItem.titleView = topicon
+  
+        
+        //end of setting navigationItem's titleView
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,8 +90,19 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MeLoginCell", for: indexPath) as! MeLoginCell
-            return cell}
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MeLoginCell", for: indexPath) as! MeLoginCell
+            if userInfo != [String:String](){
+                if let portraitData = userInfo["portrait"]{
+                    guard let url = URL(string: portraitData) else{return UITableViewCell()}
+                cell.portraitV.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "portraitPlaceholder"))
+                    cell.portraitV.clipsToBounds = true
+                    cell.portraitV.layer.cornerRadius = cell.portraitV.frame.width / 2
+                }
+            }
+
+                return cell
+            
+        }
         else if indexPath.section == 1{
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = settingData![indexPath.section]![indexPath.row].title
@@ -91,9 +116,16 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if indexPath.section == 0{
             if Auth.auth().currentUser == nil{
                 performSegue(withIdentifier: "loginNow", sender: nil)
+            }else{
+                alertSystem(message: "You have signed in", checkLogin: true)
             }
         }else if indexPath.section == 1 && indexPath.row == 0{
-            performSegue(withIdentifier: "detail", sender: nil)
+            if Auth.auth().currentUser != nil{
+                performSegue(withIdentifier: "detail", sender: nil)
+            }else{
+                alertSystem(message: "please login first.",checkLogin: false)
+            }
+            
         }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -118,5 +150,56 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+    func alertSystem(message:String,checkLogin:Bool){
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
+        if !checkLogin{
+            alert.addAction(UIAlertAction(title: "login Now", style: .default, handler: { (action) in
+                self.performSegue(withIdentifier: "loginNow", sender: nil)
+            }))
+        }
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+}
+//get data method
+extension MeController{
+    func getUserData(uid:String){
+        
+        let user = User(email: "", phone: "", portrait: "")
+        database?.child("user").child(uid).observe(.value) { (snapshot) in
+            if snapshot.value != nil{
+                
+                if let data = snapshot.value as? [String:String]{
+                    
+                    for (key,value) in data{
+                        
+                        if key == "phone"{
+                            self.userInfo["phone"] = value
+                        }else if key == "portrait"{
+                            self.userInfo["portrait"] = value
+                        }
+                        self.tableView.reloadData()
+                    }
+                    
+                }
+                self.tableView.reloadData()
+            }
+            
+        }
+//        if user.phone != ""{
+//            if user.portrait != ""{
+//                return ["phone":user.phone!,"portrait":user.portrait!]
+//            }else{
+//                return ["phone":user.phone!,"portrait":""]
+//            }
+//        }else if user.portrait != nil{
+//            return ["phone":"","portrait":user.portrait!]
+//        }else{
+//            return ["phone":"","portrait":""]
+//        }
+        
+    }
 }
 

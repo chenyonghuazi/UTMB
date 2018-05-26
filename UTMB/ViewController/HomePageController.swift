@@ -41,15 +41,11 @@ class HomePageController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.view.insertSubview(backgroundImage, at: 0)
         
         let navigationBar = self.navigationController?.navigationBar
-        let baricon = #imageLiteral(resourceName: "barIcon")
-        let topicon = UIImageView(image: baricon)
-        topicon.frame = CGRect(x: 2 * navigationBar!.frame.width / 3 - baricon.size.width / 2, y: navigationBar!.frame.height / 2 - baricon.size.height / 2, width: navigationBar!.frame.width / 2, height: navigationBar!.frame.height)
-        topicon.contentMode = .scaleAspectFit
-        navigationItem.titleView = topicon
+        navigationBar?.barTintColor = UIColor(patternImage: Image)
         //navigationBar?.backgroundColor = UIColor.blue
         //self.navigationController?.navigationBar.tintColor = UIColor.blue
 //        self.navigationController?.navigationBar.barTintColor = UIColor(red: 110, green: 193, blue: 248, alpha: 1)
-        navigationBar?.barTintColor = UIColor(patternImage: Image)
+ 
         // Do any additional setup after loading the view.
         
 //        ref = Storage.storage().reference()

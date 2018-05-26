@@ -14,6 +14,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
     // variables
     var storage:StorageReference?
     var ref:DatabaseReference?
+    var checkPortrait:Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
@@ -22,6 +23,12 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
         let gesture = UITapGestureRecognizer(target: self, action: #selector(presentImagePickerView))
         portraitImage.isUserInteractionEnabled = true
         portraitImage.addGestureRecognizer(gesture)
+        view.bringSubview(toFront: portraitImage)
+        //end setting
+        
+        //check Portrait Image
+        checkPortrait = false
+        //end check
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,11 +54,15 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
                 guard let uid = user?.uid else {return}
                 guard let email = user?.email else {return}
 //                self.storeThings(uid: uid, email: email)
-                self.storeThings2(uid: uid, email: email, completion: self.updateProfilesTest)
+               
+                self.storeThings2(uid: uid, email: email,image:self.portraitImage.image!, completion: self.updateProfilesTest)
                 
             }
             
         }
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 //firebase function backup
@@ -63,12 +74,33 @@ extension SignupViewController{
 //        completion(key!)
     }
     
-    func storeThings2(uid:String, email:String,completion:(_ key:String) -> Void){
+    func storeThings2(uid:String, email:String,image:UIImage,completion:(_ key:String) -> Void){
         
 //        let key = ref?.child("user").childByAutoId().key
 //        ref?.child("user").child(key!).setValue(["userId":uid,"email":email]);
         //completion(key!)
-        ref?.child("user").child(uid).setValue(["email":email])
+        if checkPortrait!{
+            if let data = UIImageJPEGRepresentation(image,0.5){
+                storage?.child("User").child("portrait" + uid + ".png").putData(data, metadata: nil, completion:  { (metadata, error) in
+                    if let metadata = metadata{
+                        print(metadata.downloadURLs?.last)
+                        
+                        guard let portraitStringAddress = metadata.downloadURLs?.last?.absoluteString else{
+                            self.ref?.child("user").child(uid).setValue(["email":email])
+                            return
+                        }
+                        self.ref?.child("user").child(uid).setValue(["portrait":portraitStringAddress])
+                        
+                        
+                        
+                    }
+                    if let error = error {
+                        print("error!!!!",error.localizedDescription)
+                    }
+                })
+            }
+        }
+        
 //        completion(key!)
     }
     
@@ -88,7 +120,8 @@ extension SignupViewController{
 extension SignupViewController:setPortraitImageDelegate{
     func setImage(image: UIImage,view:UIViewController) {
 //        image.draw(in: CGRect(origin: portraitImage.frame.origin, size: portraitImage.frame.size))
-        portraitImage.image = image
+        portraitImage.image = image.resizeImage(image: image, targetSize: portraitImage.frame.size)
+        portraitImage.layer.cornerRadius = portraitImage.frame.width / 2
         if let data = UIImageJPEGRepresentation(image,0.5){
             storage?.child("/portrait.png").putData(data, metadata: nil, completion: { (metadata, error) in
                 if let metadata = metadata{

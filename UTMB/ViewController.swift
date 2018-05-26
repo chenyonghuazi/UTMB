@@ -79,17 +79,59 @@ extension UIView{
     }
 }
 extension UIImage{
-    func crop(to:CGRect,view:UIImageView) -> UIImage{
-        let kuangkuang_top_distance = to.origin.y - view.frame.origin.y  
-            let x = to.origin.x * self.scale
-            let y = to.origin.y * self.scale
-            let width = to.width * self.scale
-            let height = to.height * self.scale
-            let cropZone =  CGRect(x: x, y: y, width: width, height: height)
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage
+    {
+        let size = image.size
+        let widthRatio  = targetSize.width  / image.size.width
+        let heightRatio = targetSize.height / image.size.height
+        var newSize: CGSize
+        if(widthRatio > heightRatio)
+        {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        }
+        else
+        {
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        }
         
-        let cgImage = self.cgImage?.cropping(to: cropZone)
-        let image = UIImage(cgImage: cgImage!, scale: self.scale, orientation: self.imageOrientation)
-        return image
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    func RBSquareImage(image: UIImage,cropRect:UIImageView) -> UIImage {
+        let originalWidth  = image.size.width
+        let originalHeight = image.size.height
+        var x: CGFloat = 0.0
+        var y: CGFloat = 0.0
+        var edge: CGFloat = 0.0
+        
+        if (originalWidth > originalHeight) {
+            // landscape
+            edge = originalHeight
+            x = (originalWidth - edge) / 2.0
+            y = 0.0
+            
+        } else if (originalHeight > originalWidth) {
+            // portrait
+            edge = originalWidth
+            x = 0.0
+            y = (originalHeight - originalWidth) / 2.0
+        } else {
+            // square
+            edge = originalWidth
+        }
+        
+        let cropSquare = cropRect.frame
+        let imageRef = image.cgImage?.cropping(to: cropSquare)
+        let finalImage = UIImage(cgImage: imageRef!, scale: UIScreen.main.scale, orientation: image.imageOrientation)
+        
+        return finalImage
+    }
+    func mycropping(image:UIImage,cropRect:CGRect){
+        
     }
 }
 
