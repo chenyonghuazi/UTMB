@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C1A83AC600C4D4D14ED1696 /* Pods_UTMB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407C4620D795BCFD3B0A54EA /* Pods_UTMB.framework */; };
 		E80D0738205812300003F045 /* courseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D0737205812300003F045 /* courseList.swift */; };
+		E813AF2F20B9AE4B00530263 /* changeProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813AF2E20B9AE4B00530263 /* changeProfileInfo.swift */; };
 		E8155E5D20854F2E002EB21F /* detailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8155E5C20854F2E002EB21F /* detailVC.swift */; };
 		E8155E5F208551EA002EB21F /* settingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8155E5E208551EA002EB21F /* settingModel.swift */; };
 		E822446520B0629D006A2862 /* font_style.swift in Sources */ = {isa = PBXBuildFile; fileRef = E822446420B0629D006A2862 /* font_style.swift */; };
@@ -52,6 +53,7 @@
 		407C4620D795BCFD3B0A54EA /* Pods_UTMB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTMB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A290B27740BB72B8EE9342C /* Pods-UTMB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTMB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UTMB/Pods-UTMB.debug.xcconfig"; sourceTree = "<group>"; };
 		E80D0737205812300003F045 /* courseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseList.swift; sourceTree = "<group>"; };
+		E813AF2E20B9AE4B00530263 /* changeProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = changeProfileInfo.swift; sourceTree = "<group>"; };
 		E8155E5C20854F2E002EB21F /* detailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailVC.swift; sourceTree = "<group>"; };
 		E8155E5E208551EA002EB21F /* settingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingModel.swift; sourceTree = "<group>"; };
 		E822446420B0629D006A2862 /* font_style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = font_style.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			children = (
 				E8155E5C20854F2E002EB21F /* detailVC.swift */,
 				E88D2C1F20B0A79C0027288A /* portraitImageGesture.swift */,
+				E813AF2E20B9AE4B00530263 /* changeProfileInfo.swift */,
 				E88D2C2120B0B1FA0027288A /* cropImage.swift */,
 			);
 			path = UpdateProfile;
@@ -427,6 +430,7 @@
 				E8D6E5DC203A1A0700115C05 /* MeController.swift in Sources */,
 				E8D6E5E7203A229600115C05 /* HomeCategoryCollectionCell.swift in Sources */,
 				E8D6E5E3203A220000115C05 /* HomeRecommandCell.swift in Sources */,
+				E813AF2F20B9AE4B00530263 /* changeProfileInfo.swift in Sources */,
 				E8FEEF0C20B8CB1700259901 /* firebaseGetData.swift in Sources */,
 				E82D44FA205FF56D008C8104 /* bookList_localData.swift in Sources */,
 				E8D6E5DA203A19D000115C05 /* CategoryController.swift in Sources */,

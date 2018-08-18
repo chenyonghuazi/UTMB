@@ -124,6 +124,7 @@ class MeController: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 performSegue(withIdentifier: "detail", sender: nil)
             }else{
                 alertSystem(message: "please login first.",checkLogin: false)
+                
             }
             
         }

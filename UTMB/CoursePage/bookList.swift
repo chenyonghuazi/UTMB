@@ -212,7 +212,9 @@ extension bookList:presentPDFViewDelegate{
             return (fileURL,[.removePreviousFile,.createIntermediateDirectories])
         }
         
+        
         Alamofire.download(link, to: destination).downloadProgress { (prog) in
+            
             hub.progress = Float(prog.fractionCompleted)
             }.response { (response) in
                 hub.hide(animated: true)

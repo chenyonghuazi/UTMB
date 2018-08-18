@@ -776,11 +776,43 @@
                     </view>
                     <connections>
                         <outlet property="profileTableV" destination="N50-yL-ovT" id="Eyt-Wd-958"/>
+                        <segue destination="7EX-NI-lyd" kind="show" identifier="changeInfo" id="eZZ-HS-HDU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PoB-cA-n3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1092" y="1668.2158920539732"/>
+        </scene>
+        <!--Change Profile Info-->
+        <scene sceneID="2Ds-jK-zTf">
+            <objects>
+                <viewController id="7EX-NI-lyd" customClass="changeProfileInfo" customModule="UTMB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G9P-Oj-8lP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6H7-ge-2FA">
+                                <rect key="frame" x="0.0" y="88" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ONp-0K-yiZ"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6H7-ge-2FA" firstAttribute="leading" secondItem="0k7-Pl-okq" secondAttribute="leading" id="2Wo-B0-6rh"/>
+                            <constraint firstItem="6H7-ge-2FA" firstAttribute="trailing" secondItem="0k7-Pl-okq" secondAttribute="trailing" id="6AH-sn-wxn"/>
+                            <constraint firstItem="6H7-ge-2FA" firstAttribute="top" secondItem="0k7-Pl-okq" secondAttribute="top" constant="24" id="u6G-up-8tu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0k7-Pl-okq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mTo-J4-utb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1092" y="2427.4362818590707"/>
         </scene>
         <!--User Login-->
         <scene sceneID="JBB-4o-QBA">
